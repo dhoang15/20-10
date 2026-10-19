@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Chúc Mừng Ngày 20/10 ✨</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;1,400;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Canvas vẽ hiệu ứng hạt sao, đom đóm & cánh hoa bay -->
+    <canvas id="ambient-canvas"></canvas>
+
+    <!-- Nhạc nền (Sử dụng file local nhac-nen.mp3) -->
+    <audio id="bg-music" src="nhac-nen.mp3" preload="auto" loop></audio>
+
+    <!-- Thanh công cụ phía trên (Header) -->
+    <header class="top-bar">
+        <div class="brand-tag">
+            <span class="dot"></span>
+            <span class="url-text">i.dlove.vn • 20/10</span>
+        </div>
+        <div class="top-actions">
+            <button id="custom-btn" class="icon-btn" title="Tùy chỉnh ảnh & nhạc">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+            </button>
+            <button id="music-toggle" class="icon-btn" title="Bật/Tắt âm thanh">
+                <div class="music-wave">
+                    <span></span><span></span><span></span><span></span>
+                </div>
+                <svg id="music-off-icon" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="1" y1="1" x2="23" y2="23"></line>
+                    <path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"></path>
+                    <path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- VÙNG NỘI DUNG CHÍNH (3 GIAI ĐOẠN THEO ẢNH TIKTOK) -->
+    <main class="main-stage">
+        
+        <!-- ==================== GIAI ĐOẠN 1 & 2: BÓ HOA NGHỆ THUẬT (ẢNH 2 & ẢNH 3) ==================== -->
+        <section id="scene-bouquet" class="scene active">
+            <div class="bouquet-wrapper" id="bouquet-clickable">
+                
+                <!-- Bó hoa hồng thực tế 3D siêu đẹp -->
+                <div class="bouquet-display">
+                    <!-- Hào quang phát sáng mềm mại sau bó hoa -->
+                    <div class="bouquet-glow"></div>
+
+                    <!-- Ảnh bó hoa hồng pastel chất lượng cao 8K -->
+                    <img src="images/bouquet.jpg" alt="Bó hoa hồng 20/10" class="bouquet-real-img" id="bouquet-img">
+
+                    <!-- Layer chứa các bức ảnh tròn của bạn nữ lồng vào các bông hoa khi bung nở (Ảnh 3) -->
+                    <div class="photo-blooms-container" id="photo-blooms-container">
+                        <!-- Tự động sinh bởi script.js dựa trên cấu hình CONFIG.photos -->
+                    </div>
+                </div>
+
+                <!-- Chú bướm dạ quang bay lượn mềm mại quanh bó hoa -->
+                <div class="butterfly">
+                    <div class="wing left"></div>
+                    <div class="wing right"></div>
+                </div>
+            </div>
+
+            <!-- Nút tương tác chạm vào đóa hoa nổi bật phát sáng -->
+            <div class="action-hint-btn" id="action-hint" role="button" tabindex="0">
+                <span class="hint-icon">🌸</span> Chạm vào đóa hoa <span class="hint-icon">✨</span>
+            </div>
+        </section>
+
+        <!-- ==================== GIAI ĐOẠN 3: KHÔNG GIAN NEON & KỶ NIỆM (ẢNH 4) ==================== -->
+        <section id="scene-wishes" class="scene">
+            <!-- Vùng chữ Neon Glow lơ lửng -->
+            <div class="neon-wishes-cloud" id="neon-wishes-cloud">
+                <!-- Sẽ được tạo tự động bởi script.js -->
+            </div>
+
+            <!-- Các khung ảnh kỷ niệm trôi bồng bềnh -->
+            <div class="floating-gallery" id="floating-gallery">
+                <!-- Sẽ được tạo tự động bởi script.js -->
+            </div>
+
+            <!-- Nút mở thiệp chúc mừng -->
+            <div class="bottom-action-bar">
+                <button id="open-letter-btn" class="glass-btn">
+                    <span class="btn-icon">💌</span>
+                    <span class="btn-text">Mở Lời Chúc 20/10</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- DÒNG LYRICS CHẠY PHÍA DƯỚI (XUYÊN SUỐT CÁC CẢNH) -->
+        <div class="lyrics-container">
+            <p class="lyrics-text" id="lyrics-text">" TRỜI LÀM MÁ EM THÊM HỒNG "</p>
+        </div>
+
+    </main>
+
+    <!-- ==================== POPUP BỨC THIỆP CHÚC MỪNG 20/10 ==================== -->
+    <div id="letter-modal" class="modal-overlay">
+        <div class="letter-card">
+            <button class="close-modal-btn" id="close-letter-btn">&times;</button>
+            <div class="card-decor-flower">🌸</div>
+            <h2 class="letter-recipient" id="letter-recipient-title">Gửi Bạn Ngày 20/10 ✨</h2>
+            <div class="letter-body" id="letter-body-content">
+                <!-- Nội dung thiệp lấy từ CONFIG -->
+            </div>
+            <div class="card-signature">
+                <span class="tag">Wishing you the best!</span>
+                <span class="date">20.10</span>
+            </div>
+            <button class="replay-btn" id="replay-btn">✨ Thưởng thức lại từ đầu</button>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL TÙY CHỈNH ẢNH & NHẠC (DỄ DÀNG ĐỔI) ==================== -->
+    <div id="settings-modal" class="modal-overlay">
+        <div class="settings-card">
+            <button class="close-modal-btn" id="close-settings-btn">&times;</button>
+            <h3>Tùy Chỉnh Ảnh & Lời Chúc</h3>
+            <p class="settings-sub">Bạn có thể chọn ảnh từ máy hoặc dán link ảnh/nhạc để xem ngay!</p>
+
+            <div class="setting-group">
+                <label>👤 Tên bạn nữ:</label>
+                <input type="text" id="input-recipient-name" placeholder="Ví dụ: Thu Hiền, Bạn Linh...">
+            </div>
+
+            <div class="setting-group">
+                <label>🎵 Chọn file nhạc từ máy (hoặc dán link mp3):</label>
+                <input type="file" id="input-music-file" accept="audio/*">
+                <input type="text" id="input-music-url" placeholder="Hoặc dán link mp3 vào đây...">
+            </div>
+
+            <div class="setting-group">
+                <label>📸 Tải lên 5-7 bức ảnh của bạn nữ:</label>
+                <input type="file" id="input-photos-file" accept="image/*" multiple>
+                <div id="uploaded-preview" class="uploaded-preview"></div>
+            </div>
+
+            <div class="settings-actions">
+                <button id="save-settings-btn" class="save-btn">Áp Dụng Ngay</button>
+                <button id="reset-settings-btn" class="reset-btn">Mặc Định</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nạp cấu hình và kịch bản -->
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
